@@ -34,6 +34,7 @@ function validateForm() {
         
     } catch (error) {
         console.log(error.message);
+        document.querySelector('.error-msg').textContent = error.message;
         
     }
     return false;
