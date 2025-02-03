@@ -12,9 +12,6 @@ img {
 }
 
 
-.d-none {
-  display: none;
-}
 
 .game-field {
   background: red;
@@ -64,5 +61,9 @@ input {
 
 .high-score {
     display: none;
+}
+
+.d-none {
+  display: none;
 }
 
