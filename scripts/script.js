@@ -4,9 +4,10 @@ const log = (msg) => console.log(msg);
 
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
-  validateForm();
-  document.querySelector(`.form`).classList.add(`d-none`);
-  startGame();
+  if(validateForm()) {
+    startGame();
+  }
+  
 });
 
 function validateForm() {
@@ -45,7 +46,8 @@ let minute = 0;
 let second = 0;
 
 function startGame() {
-  document.querySelector(`#gameField`).classList.remove(`d-none`);
+  document.querySelector(`.form-wrapper`).classList.add(`d-none`);
+  document.querySelector(`.game-field`).classList.remove(`d-none`);
   startTimer();
   musicFunction();
 }
