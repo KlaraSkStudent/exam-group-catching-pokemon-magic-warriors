@@ -3,7 +3,6 @@
 # Gruppexamination: Catching Pokémon
 
 https://www.figma.com/board/gu2Mpks2uFANC7yVVNFR0U/Untitled?node-id=0-1&t=lL9sXghGlXTYBZYs-1
-Test från Klara
 
 Välkommen, blivande Pokémon-mästare! 🌟
 
