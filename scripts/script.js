@@ -4,10 +4,9 @@ const log = (msg) => console.log(msg);
 
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
-  if(validateForm()) {
+  if (validateForm()) {
     startGame();
   }
-  
 });
 
 function validateForm() {
@@ -29,7 +28,7 @@ function validateForm() {
       ageRef.focus();
       throw new Error("Age must be between 10-15!");
     } else if (!genderBoyRef && !genderGirlRef) {
-      document.querySelector(".gender-check").focus();
+      validateRadioBtns();
       throw new Error("You need to pick a gender!");
     }
     return true;
@@ -38,6 +37,26 @@ function validateForm() {
     document.querySelector(".error-msg").textContent = error.message;
   }
   return false;
+}
+
+function validateRadioBtns() {
+  console.log(`validateRadioBtns`);
+  //Plockar upp alla radioknappar som hör ihop med samma namn. Lägger dem i en array. Radioknappar med samma namn bildar en grupp där man bara kan välja en av knapparna.
+  let radios = document.getElementsByName(`gender`);
+  let isRadioChecked = false;
+
+  //Loopar igenom arrayen. Om någon av knapparna är vald ändras isRadioChecked till true och loopen bryts.
+  for (let i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      isRadioChecked = true;
+      break;
+    }
+  }
+
+  //Om ingen av knapparna är vald läggs css-klassen form__radio till som ger en styling till alla radioknapparna i arrayen.
+  if (!isRadioChecked) {
+    radios.forEach((radio) => radio.classList.add(`form__radio`));
+  }
 }
 
 let timer = false;
