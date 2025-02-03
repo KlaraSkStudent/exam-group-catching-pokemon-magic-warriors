@@ -2,6 +2,8 @@
 
 # Gruppexamination: Catching Pokémon
 
+https://www.figma.com/board/gu2Mpks2uFANC7yVVNFR0U/Untitled?node-id=0-1&t=lL9sXghGlXTYBZYs-1
+
 Välkommen, blivande Pokémon-mästare! 🌟
 
 Professor Bugg har ett STORT problem: Pokémon har tagit över webbsidan! De dyker upp helt slumpmässigt, smyger runt i koden och verkar inte ha några planer på att lugna ner sig. Just nu springer de fritt, och det är fullständigt kaos! 💥
