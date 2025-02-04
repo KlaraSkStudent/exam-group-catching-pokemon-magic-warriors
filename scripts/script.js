@@ -169,25 +169,25 @@ let tenImagesArr = [];
 for (let i =0; i<randomStrings().length; i++){
    newImg = document.createElement(`img`)
   newImg.src = randomStrings()[i]
-  // changePosition(newImg)
+  changePosition(newImg)
   tenImagesArr.push(newImg)
 console.log(tenImagesArr);
 gameFieldRef.append(newImg)
 
   tenImagesArr.forEach((element) => {
-    setInterval(function(){
+    setInterval(
+      
+      function(){
       let leftPosition =    oGameData.getLeftPosition();
   let topPosition = oGameData.getTopPosition();
   element.style.position = 'absolute';
   element.style.left = `${leftPosition}px`;
   element.style.top = `${topPosition}px`;
-    },3000)
-  }   )
-
- 
-
-} 
- 
+    }
+    
+    ,3000)
+  })
+}
 }
 
 
