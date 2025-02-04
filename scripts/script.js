@@ -67,9 +67,10 @@ let second = 0;
 function startGame() {
   document.querySelector(`.form-wrapper`).classList.add(`d-none`);
   document.querySelector(`.game-field`).classList.remove(`d-none`);
-  startTimer();
+  // startTimer();
   musicFunction();
   addImgToDom()
+
 }
 
 function startTimer() {
@@ -97,7 +98,7 @@ function startTimer() {
 function musicFunction() {
   console.log("musicFunction()");
   let pokemonSongRef = document.querySelector("#pokemonSong");
-  pokemonSongRef.play();
+  // pokemonSongRef.play();
   //   pokemonSongRef.load();
 }
 
@@ -132,20 +133,23 @@ function randomizePokemons() {
   console.log(`randomizePokemons()`);
   
     let randomPokemons = [];
+
     while(randomPokemons.length < 10) {
    let randomPokemon = Math.floor(Math.random() * imgToArr().length);
    
       if(!randomPokemons.includes(randomPokemon)) {
         randomPokemons.push(randomPokemon)
       }
+   
     }
     return randomPokemons;
 }
 
 
+
 function randomStrings(){
   console.log(`randomString()`);
-  
+
 let stringArr =[]
 for (let i = 0; i<randomizePokemons().length; i++) {
 stringArr.push(imgToArr()[randomizePokemons()[i]]);
@@ -159,12 +163,66 @@ function addImgToDom (){
   
 let gameFieldRef = document.querySelector(`.game-field`)
 
+let newImg;
+let tenImagesArr = [];
+
 for (let i =0; i<randomStrings().length; i++){
-  let newImg = document.createElement(`img`)
-  newImg.src = imgToArr()[i]
-  gameFieldRef.append(newImg)
+   newImg = document.createElement(`img`)
+  newImg.src = randomStrings()[i]
+  changePosition(newImg)
+  tenImagesArr.push(newImg)
+console.log(tenImagesArr);
+gameFieldRef.append(newImg)
+
+  tenImagesArr.forEach((element) => {
+    setInterval(
+      
+      function(){
+      let leftPosition =    oGameData.getLeftPosition();
+  let topPosition = oGameData.getTopPosition();
+  element.style.position = 'absolute';
+  element.style.left = `${leftPosition}px`;
+  element.style.top = `${topPosition}px`;
+    }
+    
+    ,3000)
+  })
 }
 }
 
 
+function changePosition(elem) {
+let leftPosition =    oGameData.getLeftPosition();
+let topPosition = oGameData.getTopPosition();
+elem.style.position = 'absolute';
+elem.style.left = `${leftPosition}px`;
+elem.style.top = `${topPosition}px`;
 
+console.log(leftPosition, topPosition);
+
+}
+
+// setInterval(changePosition, 3000);
+
+
+//Toggla för att fånga pokemons?
+// for (let textRef of textRefs) {
+//   textRef.addEventListener(`mouseleave`, (event) => {
+//     console.log(event.target.textContent);
+//     event.target.classList.toggle(`t-red`);
+//   });
+// }
+
+
+
+
+//   // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens bredd minus bildens bredd
+//   getLeftPosition : () => {
+//     let nmbr = Math.round(Math.random() * ( window.innerWidth - 300)) + 1;
+//     return nmbr;
+// },
+// // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens höjd minus bildens höjd
+// getTopPosition : () => {
+//     let nmbr = Math.round(Math.random() * ( window.innerHeight - 300)) + 1;
+//     return nmbr;
+// },

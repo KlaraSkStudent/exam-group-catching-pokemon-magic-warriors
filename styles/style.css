@@ -12,8 +12,11 @@ img {
 }
 
 .game-field {
-  background: red;
+  background-image: url(../assets/arena-background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
+  position: relative;
 }
 
 .form-wrapper {
