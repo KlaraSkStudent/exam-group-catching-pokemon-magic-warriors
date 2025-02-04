@@ -67,7 +67,7 @@ let second = 0;
 function startGame() {
   document.querySelector(`.form-wrapper`).classList.add(`d-none`);
   document.querySelector(`.game-field`).classList.remove(`d-none`);
-  startTimer();
+  // startTimer();
   musicFunction();
   addImgToDom()
 }
@@ -97,7 +97,7 @@ function startTimer() {
 function musicFunction() {
   console.log("musicFunction()");
   let pokemonSongRef = document.querySelector("#pokemonSong");
-  pokemonSongRef.play();
+  // pokemonSongRef.play();
   //   pokemonSongRef.load();
 }
 
@@ -143,12 +143,31 @@ function randomizePokemons() {
 }
 
 
+
 function randomStrings(){
   console.log(`randomString()`);
-  
+
 let stringArr =[]
+
+
 for (let i = 0; i<randomizePokemons().length; i++) {
-stringArr.push(imgToArr()[randomizePokemons()[i]]);
+let långArr = imgToArr()
+let kortArrMedIndexNr = randomizePokemons();
+console.log(`Det här är långArrr ${långArr}`);
+console.log(`Det här är kortArrMedIndexNr ${kortArrMedIndexNr}`);
+
+for(elem in kortArrMedIndexNr){
+  
+  stringArr.push(långArr[elem])
+  
+  
+}
+console.log(stringArr);
+// stringArr.push(långArr[kortArrMedIndexNr.forEach()])
+
+
+
+// stringArr.push(imgToArr()[randomizePokemons()[i]]);
 }
 return stringArr
 };
@@ -162,9 +181,35 @@ let gameFieldRef = document.querySelector(`.game-field`)
 for (let i =0; i<randomStrings().length; i++){
   let newImg = document.createElement(`img`)
   newImg.src = imgToArr()[i]
+  changePosition(newImg)
   gameFieldRef.append(newImg)
 }
 }
 
+function changePosition(elem) {
+let leftPosition =    oGameData.getLeftPosition();
+let topPosition = oGameData.getTopPosition();
+elem.style.position = 'absolute';
+elem.style.left = `${leftPosition}px`;
+elem.style.top = `${topPosition}px`;
+
+console.log(leftPosition, topPosition);
+
+ 
+
+  
+
+}
 
 
+
+//   // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens bredd minus bildens bredd
+//   getLeftPosition : () => {
+//     let nmbr = Math.round(Math.random() * ( window.innerWidth - 300)) + 1;
+//     return nmbr;
+// },
+// // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens höjd minus bildens höjd
+// getTopPosition : () => {
+//     let nmbr = Math.round(Math.random() * ( window.innerHeight - 300)) + 1;
+//     return nmbr;
+// },
