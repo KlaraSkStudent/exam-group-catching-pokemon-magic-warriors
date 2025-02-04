@@ -69,6 +69,7 @@ function startGame() {
   document.querySelector(`.game-field`).classList.remove(`d-none`);
   startTimer();
   musicFunction();
+  addImgToDom()
 }
 
 function startTimer() {
@@ -99,3 +100,71 @@ function musicFunction() {
   pokemonSongRef.play();
   //   pokemonSongRef.load();
 }
+
+
+
+//Gör om mappen med bilder till en array med strängar som kan användas till src för att lägga till bilder i DOM:en
+function imgToArr(){
+  console.log(`imgToArr()`);
+  
+  let pokemonArray = [];
+ 
+  for (let i =1; i< 152; i++){
+
+if(i<10){
+  pokemonArray.push(`../assets/pokemons/00${i}.png`)
+}
+else if(i>=10 && i< 100){
+  pokemonArray.push(`../assets/pokemons/0${i}.png`)
+}
+
+else if(i>= 100){
+  pokemonArray.push(`../assets/pokemons/${i}.png`)
+}
+
+  }
+  return pokemonArray
+} 
+
+
+
+function randomizePokemons() {
+  console.log(`randomizePokemons()`);
+  
+    let randomPokemons = [];
+    while(randomPokemons.length < 10) {
+   let randomPokemon = Math.floor(Math.random() * imgToArr().length);
+   
+      if(!randomPokemons.includes(randomPokemon)) {
+        randomPokemons.push(randomPokemon)
+      }
+    }
+    return randomPokemons;
+}
+
+
+function randomStrings(){
+  console.log(`randomString()`);
+  
+let stringArr =[]
+for (let i = 0; i<randomizePokemons().length; i++) {
+stringArr.push(imgToArr()[randomizePokemons()[i]]);
+}
+return stringArr
+};
+
+
+function addImgToDom (){
+  console.log(`addImgToDom()`);
+  
+let gameFieldRef = document.querySelector(`.game-field`)
+
+for (let i =0; i<randomStrings().length; i++){
+  let newImg = document.createElement(`img`)
+  newImg.src = imgToArr()[i]
+  gameFieldRef.append(newImg)
+}
+}
+
+
+
