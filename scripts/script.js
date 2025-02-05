@@ -69,8 +69,7 @@ function startGame() {
   document.querySelector(`.game-field`).classList.remove(`d-none`);
   // startTimer();
   musicFunction();
-  addImgToDom()
-
+  addImgToDom();
 }
 
 function startTimer() {
@@ -102,108 +101,82 @@ function musicFunction() {
   //   pokemonSongRef.load();
 }
 
-
-
 //Gör om mappen med bilder till en array med strängar som kan användas till src för att lägga till bilder i DOM:en
-function imgToArr(){
+function imgToArr() {
   console.log(`imgToArr()`);
-  
+
   let pokemonArray = [];
- 
-  for (let i =1; i< 152; i++){
 
-if(i<10){
-  pokemonArray.push(`../assets/pokemons/00${i}.png`)
-}
-else if(i>=10 && i< 100){
-  pokemonArray.push(`../assets/pokemons/0${i}.png`)
-}
-
-else if(i>= 100){
-  pokemonArray.push(`../assets/pokemons/${i}.png`)
-}
-
+  for (let i = 1; i < 152; i++) {
+    if (i < 10) {
+      pokemonArray.push(`../assets/pokemons/00${i}.png`);
+    } else if (i >= 10 && i < 100) {
+      pokemonArray.push(`../assets/pokemons/0${i}.png`);
+    } else if (i >= 100) {
+      pokemonArray.push(`../assets/pokemons/${i}.png`);
+    }
   }
-  return pokemonArray
-} 
-
-
+  return pokemonArray;
+}
 
 function randomizePokemons() {
   console.log(`randomizePokemons()`);
-  
-    let randomPokemons = [];
 
-    while(randomPokemons.length < 10) {
-   let randomPokemon = Math.floor(Math.random() * imgToArr().length);
-   
-      if(!randomPokemons.includes(randomPokemon)) {
-        randomPokemons.push(randomPokemon)
-      }
-   
+  let randomPokemons = [];
+
+  while (randomPokemons.length < 10) {
+    let randomPokemon = Math.floor(Math.random() * imgToArr().length);
+
+    if (!randomPokemons.includes(randomPokemon)) {
+      randomPokemons.push(randomPokemon);
     }
-    return randomPokemons;
+  }
+  return randomPokemons;
 }
 
-
-
-function randomStrings(){
+function randomStrings() {
   console.log(`randomString()`);
 
-let stringArr =[]
-for (let i = 0; i<randomizePokemons().length; i++) {
-stringArr.push(imgToArr()[randomizePokemons()[i]]);
+  let stringArr = [];
+  for (let i = 0; i < randomizePokemons().length; i++) {
+    stringArr.push(imgToArr()[randomizePokemons()[i]]);
+  }
+  return stringArr;
 }
-return stringArr
-};
 
-
-function addImgToDom (){
+function addImgToDom() {
   console.log(`addImgToDom()`);
-  
-let gameFieldRef = document.querySelector(`.game-field`)
 
-let newImg;
-let tenImagesArr = [];
+  let gameFieldRef = document.querySelector(`.game-field`);
 
-for (let i =0; i<randomStrings().length; i++){
-   newImg = document.createElement(`img`)
-  newImg.src = randomStrings()[i]
-  changePosition(newImg)
-  tenImagesArr.push(newImg)
-console.log(tenImagesArr);
-gameFieldRef.append(newImg)
+  let newImg;
+  let tenImagesArr = [];
 
-  tenImagesArr.forEach((element) => {
-    setInterval(
-      
-      function(){
-      let leftPosition =    oGameData.getLeftPosition();
-  let topPosition = oGameData.getTopPosition();
-  element.style.position = 'absolute';
-  element.style.left = `${leftPosition}px`;
-  element.style.top = `${topPosition}px`;
-    }
-    
-    ,3000)
-  })
+  for (let i = 0; i < randomStrings().length; i++) {
+    newImg = document.createElement(`img`);
+    newImg.src = randomStrings()[i];
+    changePosition(newImg);
+    tenImagesArr.push(newImg);
+    console.log(tenImagesArr);
+    gameFieldRef.append(newImg);
+
+    tenImagesArr.forEach((element) => {
+      setInterval(() => changePosition(element), 3000);
+    });
+  }
 }
-}
-
 
 function changePosition(elem) {
-let leftPosition =    oGameData.getLeftPosition();
-let topPosition = oGameData.getTopPosition();
-elem.style.position = 'absolute';
-elem.style.left = `${leftPosition}px`;
-elem.style.top = `${topPosition}px`;
+  let leftPosition = oGameData.getLeftPosition();
+  let topPosition = oGameData.getTopPosition();
+  elem.style.position = "absolute";
+  elem.style.left = `${leftPosition}px`;
+  elem.style.top = `${topPosition}px`;
 
-console.log(leftPosition, topPosition);
-
+  console.log(leftPosition, topPosition);
 }
 
 // setInterval(changePosition, 3000);
-
 
 //Toggla för att fånga pokemons?
 // for (let textRef of textRefs) {
@@ -212,9 +185,6 @@ console.log(leftPosition, topPosition);
 //     event.target.classList.toggle(`t-red`);
 //   });
 // }
-
-
-
 
 //   // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens bredd minus bildens bredd
 //   getLeftPosition : () => {
