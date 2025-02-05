@@ -6,6 +6,7 @@ document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
   if (validateForm()) {
     startGame();
+    // gameOver();
   }
 });
 
@@ -31,12 +32,33 @@ function validateForm() {
       validateRadioBtns();
       throw new Error("You need to pick a gender!");
     }
+    oGameData.trainerName = trainerNameRef.value;
+    oGameData.trainerAge = ageRef.value;
+    //storePlayer(oGameData)
+   
+    
+
     return true;
   } catch (error) {
     console.log(error.message);
     document.querySelector(".error-msg").textContent = error.message;
   }
   return false;
+}
+
+
+function getDataBase() {
+  console.log("getDataBase()");
+
+  let players = JSON.parse(localStorage.getItem("database")) || [];
+  return players;
+}
+
+function storePlayer(obj) {
+  let myPlayers = getDataBase();
+
+  myPlayers.push(obj);
+  localStorage.setItem("database", JSON.stringify(myPlayers));
 }
 
 function validateRadioBtns() {
@@ -67,32 +89,12 @@ let second = 0;
 function startGame() {
   document.querySelector(`.form-wrapper`).classList.add(`d-none`);
   document.querySelector(`.game-field`).classList.remove(`d-none`);
-  // startTimer();
   musicFunction();
   addImgToDom();
+  oGameData.startTimeInMilliseconds();
 }
 
-function startTimer() {
-  console.log(`startTimer()`);
-  timer = true;
 
-  if (timer) {
-    count++;
-
-    if (count == 100) {
-      second++;
-      count = 0;
-      console.log(`Sekunder: ${second}`);
-    }
-    if (second == 60) {
-      minute++;
-      second = 0;
-      console.log(`Minuter: ${minute}`);
-    }
-
-    setTimeout(startTimer, 10);
-  }
-}
 
 function musicFunction() {
   console.log("musicFunction()");
@@ -152,29 +154,85 @@ function changePosition(elem) {
 }
 
 function toggleMouseOver(elem) {
-
+  oGameData.nmbrOfCaughtPokemons =1
   console.log(elem);
   elem.addEventListener('mouseover', (event) => {
     if(event.target.alt === 'pokemon') {
       event.target.src = '../assets/ball.webp';
       event.target.alt = 'ball';
+      console.log(
+ 
+        oGameData.nmbrOfCaughtPokemons++
+      );
+     
     } else {
       event.target.src =generateUrl(event.target.dataset.id)
       event.target.alt =`pokemon`;
+      oGameData.nmbrOfCaughtPokemons--;
+      console.log(oGameData.nmbrOfCaughtPokemons);
       
-
-
-
-
-
+      }
+      gameOver();
   
-      
-    }
-  })
+    })
 }
 
+function gameOver() {
+  if(oGameData.nmbrOfCaughtPokemons=== 10){
+    console.log(`Game over`);
+    oGameData.pokemonNumbers = document.querySelectorAll('img')
+    console.log(oGameData.pokemonNumbers);
+    oGameData.endTimeInMilliseconds();
+    oGameData.endTime = oGameData.nmbrOfMilliseconds();
+    console.log(oGameData);
+    storePlayer(oGameData);
+    document.querySelector('#highScore').classList.remove('d-none');
+
+    
+    for(let pokemon of oGameData.pokemonNumbers) {
+    pokemon.classList.add('d-none') 
+    }
+
+    
+  }
+}
+
+//vid avslutat spel hämtas highscore från localStorage
+//kontrollera om tiden tar sig in på highscore
+//isf lägg till i hs och spara i localStorage igen
+//visa resultat
 
 
+
+// function startTimer() {
+//   console.log(`startTimer()`);
+//   timer = true;
+
+//   if (timer) {
+//     count++;
+
+//     if (count == 100) {
+//       second++;
+//       count = 0;
+//       console.log(`Sekunder: ${second}`);
+//     }
+//     if (second == 60) {
+//       minute++;
+//       second = 0;
+//       console.log(`Minuter: ${minute}`);
+//     }
+
+//     setTimeout(startTimer, 10);
+
+//   }
+//   // if(gameOver()){timer=false}
+
+//   // oGameData.startTimeInMilliseconds();
+ 
+  
+
+
+// }
 
 
 
