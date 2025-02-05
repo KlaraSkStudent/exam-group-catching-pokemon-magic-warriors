@@ -101,48 +101,23 @@ function musicFunction() {
   //   pokemonSongRef.load();
 }
 
-//Gör om mappen med bilder till en array med strängar som kan användas till src för att lägga till bilder i DOM:en
-function imgToArr() {
-  console.log(`imgToArr()`);
-
-  let pokemonArray = [];
-
-  for (let i = 1; i < 152; i++) {
-    if (i < 10) {
-      pokemonArray.push(`../assets/pokemons/00${i}.png`);
-    } else if (i >= 10 && i < 100) {
-      pokemonArray.push(`../assets/pokemons/0${i}.png`);
-    } else if (i >= 100) {
-      pokemonArray.push(`../assets/pokemons/${i}.png`);
-    }
-  }
-  return pokemonArray;
-}
 
 function randomizePokemons() {
   console.log(`randomizePokemons()`);
 
-  let randomPokemons = [];
-
-  while (randomPokemons.length < 10) {
-    let randomPokemon = Math.floor(Math.random() * imgToArr().length);
-
-    if (!randomPokemons.includes(randomPokemon)) {
-      randomPokemons.push(randomPokemon);
-    }
+  let pokemons = [];
+  for(let i=0; i< 10; i++){
+    pokemons.push(Math.floor(Math.random()* 151+1));
+    
   }
-  return randomPokemons;
+  return pokemons;
 }
 
-function randomStrings() {
-  console.log(`randomString()`);
-
-  let stringArr = [];
-  for (let i = 0; i < randomizePokemons().length; i++) {
-    stringArr.push(imgToArr()[randomizePokemons()[i]]);
-  }
-  return stringArr;
+function generateUrl(id) {
+  let endPoint = `00${id}`;
+  return `../assets/pokemons/${endPoint.slice(-3)}.png`;
 }
+
 
 function addImgToDom() {
   console.log(`addImgToDom()`);
@@ -150,17 +125,19 @@ function addImgToDom() {
   let gameFieldRef = document.querySelector(`.game-field`);
 
   let newImg;
-  let tenImagesArr = [];
-
-  for (let i = 0; i < randomStrings().length; i++) {
+  let pokemons = randomizePokemons();
+  let tenImagesArray = [];
+  
+  for(let pokemon of pokemons) {
     newImg = document.createElement(`img`);
-    newImg.src = randomStrings()[i];
+    newImg.src = generateUrl(pokemon);
+    newImg.alt = 'pokemon';
+    newImg.dataset.id=pokemon;
     changePosition(newImg);
-    tenImagesArr.push(newImg);
-    console.log(tenImagesArr);
+    tenImagesArray.push(newImg);
     gameFieldRef.append(newImg);
-
-    tenImagesArr.forEach((element) => {
+    toggleMouseOver(newImg)
+    tenImagesArray.forEach((element) => {
       setInterval(() => changePosition(element), 3000);
     });
   }
@@ -172,27 +149,33 @@ function changePosition(elem) {
   elem.style.position = "absolute";
   elem.style.left = `${leftPosition}px`;
   elem.style.top = `${topPosition}px`;
-
-  console.log(leftPosition, topPosition);
 }
 
-// setInterval(changePosition, 3000);
+function toggleMouseOver(elem) {
 
-//Toggla för att fånga pokemons?
-// for (let textRef of textRefs) {
-//   textRef.addEventListener(`mouseleave`, (event) => {
-//     console.log(event.target.textContent);
-//     event.target.classList.toggle(`t-red`);
-//   });
-// }
+  console.log(elem);
+  elem.addEventListener('mouseover', (event) => {
+    if(event.target.alt === 'pokemon') {
+      event.target.src = '../assets/ball.webp';
+      event.target.alt = 'ball';
+    } else {
+      event.target.src =generateUrl(event.target.dataset.id)
+      event.target.alt =`pokemon`;
+      
 
-//   // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens bredd minus bildens bredd
-//   getLeftPosition : () => {
-//     let nmbr = Math.round(Math.random() * ( window.innerWidth - 300)) + 1;
-//     return nmbr;
-// },
-// // Metod som slumpar fram ett tal som förhåller sig mellan 0 och webbläsarens höjd minus bildens höjd
-// getTopPosition : () => {
-//     let nmbr = Math.round(Math.random() * ( window.innerHeight - 300)) + 1;
-//     return nmbr;
-// },
+
+
+
+
+  
+      
+    }
+  })
+}
+
+
+
+
+
+
+
