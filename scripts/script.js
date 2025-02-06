@@ -102,8 +102,8 @@ function startGame() {
 function musicFunction() {
   console.log("musicFunction()");
   let pokemonSongRef = document.querySelector("#pokemonSong");
-  // pokemonSongRef.play();
-  //   pokemonSongRef.load();
+     pokemonSongRef.play();
+     //pokemonSongRef.load();
 }
 
 
@@ -190,6 +190,7 @@ function gameOver() {
     console.log(oGameData);
     storePlayer(oGameData);
     document.querySelector('#highScore').classList.remove('d-none');
+    document.querySelector("#pokemonSong").pause();
     highScore()
     
     for(let pokemon of oGameData.pokemonNumbers) {
@@ -207,6 +208,7 @@ function playAgain() {
   for (let listItem of listItems) {
     listItem.remove()
   }
+  document.querySelector("#pokemonSong").load();
 	oGameData.init();
 	document.querySelector('#highScore').classList.add('d-none')
   document.querySelector('#gameField').classList.add('d-none')
