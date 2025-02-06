@@ -223,9 +223,6 @@ function highScore (){
  let players= getDataBase()
   console.log(players);
 
-  
-
-
  players.sort(function(a, b){return a.endTime-b.endTime});
   console.log(players);
   console.log(players.slice(0, 10));
@@ -234,9 +231,13 @@ function highScore (){
   console.log( topTen[0].trainerName);
   
   for (let result in topTen){
-  listItemToDom(`Namn: ${topTen[result].trainerName} tid: ${topTen[result].endTime} millisekunder`)
+  listItemToDom(`Name: ${topTen[result].trainerName}, Time: ${topTen[result].endTime} milliseconds`)
   } 
-  localStorage.setItem("database", JSON.stringify(topTen));
+  localStorage.setItem("database", JSON.stringify(players));
+
+  let winMsgRef = document.querySelector(`#winMsg`)
+  winMsgRef.textContent = `You made it ${oGameData.trainerName}! Your time was ${oGameData.endTime} milliseconds`
+
 }
 
 
@@ -245,7 +246,6 @@ function listItemToDom(elem){
   let listItem =document.createElement(`li`)
   listItem.textContent= elem
   highScoreList.append(listItem)
-  
 }
 
 //vid avslutat spel hämtas highscore från localStorage
