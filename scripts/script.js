@@ -36,7 +36,10 @@ function validateForm() {
     oGameData.trainerAge = ageRef.value;
     //storePlayer(oGameData)
    
-    
+    document.querySelector("#nick").value = "";
+    document.querySelector("#age").value = "";
+    document.querySelector("#boy").checked = false;
+    document.querySelector("#girl").checked = false;
 
     return true;
   } catch (error) {
@@ -193,10 +196,21 @@ function gameOver() {
     pokemon.classList.add('d-none') 
     }
 
+    document.querySelector('#playAgainBtn').addEventListener('click', playAgain)
     
   }
 }
 
+function playAgain() {
+
+	oGameData.init();
+	document.querySelector('#highScore').classList.add('d-none')
+  document.querySelector('#gameField').classList.add('d-none')
+
+  document.querySelector('#formWrapper').classList.remove('d-none')
+
+
+}
 //vid avslutat spel hämtas highscore från localStorage
 //kontrollera om tiden tar sig in på highscore
 //isf lägg till i hs och spara i localStorage igen
