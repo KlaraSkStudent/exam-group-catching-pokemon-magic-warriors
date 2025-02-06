@@ -72,3 +72,13 @@ input {
   outline: solid red 2px;
 }
 
+.high-score{
+  background-color: rgba(255, 255, 255, 0.519);
+
+}
+
+.highscore-list{
+  
+  margin: 2rem;
+
+}

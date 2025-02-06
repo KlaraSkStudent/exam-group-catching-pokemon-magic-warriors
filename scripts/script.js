@@ -157,7 +157,7 @@ function changePosition(elem) {
 }
 
 function toggleMouseOver(elem) {
-  oGameData.nmbrOfCaughtPokemons =1
+  oGameData.nmbrOfCaughtPokemons =0;
   console.log(elem);
   elem.addEventListener('mouseover', (event) => {
     if(event.target.alt === 'pokemon') {
@@ -190,7 +190,7 @@ function gameOver() {
     console.log(oGameData);
     storePlayer(oGameData);
     document.querySelector('#highScore').classList.remove('d-none');
-
+    highScore()
     
     for(let pokemon of oGameData.pokemonNumbers) {
     pokemon.classList.add('d-none') 
@@ -199,18 +199,55 @@ function gameOver() {
     document.querySelector('#playAgainBtn').addEventListener('click', playAgain)
     
   }
+ 
 }
 
 function playAgain() {
-
+  let listItems =document.querySelectorAll(`li`)
+  for (let listItem of listItems) {
+    listItem.remove()
+  }
 	oGameData.init();
 	document.querySelector('#highScore').classList.add('d-none')
   document.querySelector('#gameField').classList.add('d-none')
 
   document.querySelector('#formWrapper').classList.remove('d-none')
 
+  
 
 }
+
+function highScore (){
+  console.log("highScore()");
+  
+ let players= getDataBase()
+  console.log(players);
+
+  
+
+
+ players.sort(function(a, b){return a.endTime-b.endTime});
+  console.log(players);
+  console.log(players.slice(0, 10));
+  let topTen = players.slice(0, 10);
+
+  console.log( topTen[0].trainerName);
+  
+  for (let result in topTen){
+  listItemToDom(`Namn: ${topTen[result].trainerName} tid: ${topTen[result].endTime} millisekunder`)
+  } 
+  localStorage.setItem("database", JSON.stringify(topTen));
+}
+
+
+function listItemToDom(elem){
+  let highScoreList=  document.querySelector(`.highscore-list`)
+  let listItem =document.createElement(`li`)
+  listItem.textContent= elem
+  highScoreList.append(listItem)
+  
+}
+
 //vid avslutat spel hämtas highscore från localStorage
 //kontrollera om tiden tar sig in på highscore
 //isf lägg till i hs och spara i localStorage igen
