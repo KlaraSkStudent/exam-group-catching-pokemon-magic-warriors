@@ -6,38 +6,68 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <script src="./scripts/oGameData.js"></script>
     <script type="module" src="./scripts/script.js"></script>
+    <link rel="icon" type="image/x-icon" href="./assets/pokemon-favicon.ico" />
     <title>Gotta catch 'em all</title>
   </head>
   <body>
     <!-- Detta är koden från mitt exempel, skriv gärna egen HTML om så önskas -->
     <section class="form-wrapper" id="formWrapper">
       <form class="form" id="form">
-        <h1>Welcome young pokemon trainer</h1>
+        <h1 class="title">Welcome young pokemon trainer</h1>
+        <p class="error-msg"></p>
         <h2>Please enter your name</h2>
         <input id="nick" type="text" placeholder="Trainer nickname" />
         <input id="age" type="text" placeholder="Trainer age" />
         <p>Are you a boy? Or are you a girl?</p>
-        <label>
-          <input type="radio" name="gender" id="boy" />
-          Boy
-        </label>
-        <label>
-          <input type="radio" name="gender" id="girl" />
-          Girl
-        </label>
-        <button id="submitBtn">Let's catch some pokemons!</button>
+        <div class="gender-check">
+          <label>
+            <input value="boy" type="radio" name="gender" id="boy" />
+            Boy
+          </label>
+
+          <label>
+            <input value="girl" type="radio" name="gender" id="girl" />
+            Girl
+          </label>
+        </div>
+        <button class="submit-btn" id="submitBtn">
+          Let's catch some pokemons!
+        </button>
       </form>
     </section>
     <section id="gameField" class="game-field d-none">
+      <button class="stop-music-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          color="#f8e71c"
+          fill="none"
+        >
+          <path
+            d="M4 7C4 5.58579 4 4.87868 4.43934 4.43934C4.87868 4 5.58579 4 7 4C8.41421 4 9.12132 4 9.56066 4.43934C10 4.87868 10 5.58579 10 7V17C10 18.4142 10 19.1213 9.56066 19.5607C9.12132 20 8.41421 20 7 20C5.58579 20 4.87868 20 4.43934 19.5607C4 19.1213 4 18.4142 4 17V7Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+          <path
+            d="M14 7C14 5.58579 14 4.87868 14.4393 4.43934C14.8787 4 15.5858 4 17 4C18.4142 4 19.1213 4 19.5607 4.43934C20 4.87868 20 5.58579 20 7V17C20 18.4142 20 19.1213 19.5607 19.5607C19.1213 20 18.4142 20 17 20C15.5858 20 14.8787 20 14.4393 19.5607C14 19.1213 14 18.4142 14 17V7Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+        </svg>
+      </button>
       <section class="high-score d-none" id="highScore">
-        <h1>Congratulations!</h1>
+        <h1 class="high-score-title">Congratulations!</h1>
         <h3 id="winMsg"></h3>
+        <h4>Current top 10</h4>
         <ol class="highscore-list" id="highscoreList"></ol>
-        <button id="playAgainBtn">Play again?</button>
+        <button class="play-again-btn" id="playAgainBtn">Play again?</button>
       </section>
     </section>
 
     <!-- Läs in audioelementet från DOMen. För att spela .play(), för att pausa .pause(), för att starta om .load()  -->
-    <audio src="./assets/pokemon_vs_trainer.mp3"></audio>
+    <audio id="pokemonSong" src="./assets/pokemon-jesper-remix.mp3"></audio>
+    <audio id="clappingSound" src="./assets/clapping.wav"></audio>
   </body>
 </html>

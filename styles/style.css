@@ -1,13 +1,124 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Ser till så att bilderna får korrekt storlek och deras rörelse animeras */
 /* När ni sätter intervallen efter vilken pokemonen får sin nya position bör den intervallen överensstämma med tiden här. 3s. */
 img {
-    width: 300px;
-    transition: all 3s linear;
+  width: 300px;
+  transition: all 3s linear;
 }
 
+.game-field {
+  background-image: url(../assets/arena-background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  background-image: url(../assets/background.png);
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.form {
+  background-color: rgba(255, 255, 255, 0.519);
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input {
+  padding: 0.7rem;
+  border-radius: 8px;
+}
+
+.error-msg {
+  color: rgb(197, 0, 0);
+}
+
+.submit-btn {
+  background-color: red;
+  border: none;
+  padding: 0.7rem;
+  color: yellow;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form__radio {
+  outline: solid red 2px;
+}
+
+/* High score */
+.high-score {
+  background-color: rgba(255, 255, 255, 0.519);
+
+  padding: 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.high-score-title {
+  font-size: 32px;
+}
+
+.highscore-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.play-again-btn {
+  background-color: red;
+  border: none;
+  padding: 0.7rem;
+  color: yellow;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.body {
+  position: relative;
+}
+
+.stop-music-btn {
+  position: absolute;
+  top: 4%;
+  left: 2%;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #ff0000;
+}
+
+.stop-music-btn:hover {
+  background-color: #c50505;
+}
+
+.d-none {
+  display: none;
+}

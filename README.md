@@ -1,3 +1,4 @@
+Test från Klara 
 ![bulbasaur](./assets/background.png)
 
 # Gruppexamination: Catching Pokémon
@@ -14,20 +15,20 @@ Men var försiktig… 😨 Om du av misstag nuddar en Pokémon du redan har fån
 
 ## Uppgift
 
-* Användaren startar vid ett formulär och ni skall formulärvalidera följande
+- Användaren startar vid ett formulär och ni skall formulärvalidera följande
   - Tränarens namn måste vara mellan 5 och 10 tecken långt
   - Tränaren måste vara mellan 10 och 15 år gammal
   - Tränaren måste ha bockat i om hen är en pojke eller en flicka
-* Vid lyckad validering skall spelet starta, vid misslyckad validering meddelas användaren om exakt vad som gick snett
-* Under tiden spelet pågår skall spelmusik spelas
-* 10 slumpmässigt utvalda pokemons (av 151 stycken) skall slumpas ut på skärmen
-* Bilderna skall ha en bredd och höjd på 300px.
-* Var 3e sekund får varje pokemon en ny position
-* När man hovrar över en pokemon så fångas den i en pokeboll
-* När man hovrar över en pokeboll smiter pokemonen (måste vara samma pokemon som fångades)
-* När alla pokemon fångats avslutas spelet
-* Om användarens tid tar sig in på topp 10 snabbaste tider sparas hen ner i HighScore-listan i localStorage
-* När HighScore-vyn dyker upp skall användaren kunna starta om spelet genom att återgå till startformuläret
+- Vid lyckad validering skall spelet starta, vid misslyckad validering meddelas användaren om exakt vad som gick snett
+- Under tiden spelet pågår skall spelmusik spelas
+- 10 slumpmässigt utvalda pokemons (av 151 stycken) skall slumpas ut på skärmen
+- Bilderna skall ha en bredd och höjd på 300px.
+- Var 3e sekund får varje pokemon en ny position
+- När man hovrar över en pokemon så fångas den i en pokeboll
+- När man hovrar över en pokeboll smiter pokemonen (måste vara samma pokemon som fångades)
+- När alla pokemon fångats avslutas spelet
+- Om användarens tid tar sig in på topp 10 snabbaste tider sparas hen ner i HighScore-listan i localStorage
+- När HighScore-vyn dyker upp skall användaren kunna starta om spelet genom att återgå till startformuläret
 
 Här hittar ni en [demonstration av spelet](https://drive.google.com/file/d/1XqZY1tBt95HNET9k9-ZnyZomu4RcXfEs/view?usp=sharing)
 
@@ -60,15 +61,15 @@ Nu skall ni få ta era första stapplande steg med brancher i Git Flow.
 
 För att nå godkänt betyg:
 
-* Får ni inte göra pushar varken till main eller dev, enbart till era feature-brancher
-* main får endast innehålla en färdig version av spelet, merga därför inte till main förens spelet är helt färdigt
-* Måste var och en i gruppen ha skapat brancher, pushat kod, och gjort pull requests
+- Får ni inte göra pushar varken till main eller dev, enbart till era feature-brancher
+- main får endast innehålla en färdig version av spelet, merga därför inte till main förens spelet är helt färdigt
+- Måste var och en i gruppen ha skapat brancher, pushat kod, och gjort pull requests
 
 Tips! Även om arbetssättet är lämpat för att man skall kunna sitta och jobba parallellt med kod så tycker jag att ni bör sitta tillsammans, dela skärm, prata, diskutera, och turas om med vem som kodar just nu. Vi är inte riktigt där ännu att vi kan släppa lös alla på egen hand.
 
 ## Handledning
 
-Sköter vi på Discord. Tagga mig i handledningskanalen under de timmar som ni normalt sett har lektionstid. Eftersom detta är ert första riktiga kodprojekt där ni tvingas tänka mycket själva så kommer jag vara ganska generös med hjälp, MEN då krävs det att man gjort ett grundligt arbete och försökt själv först. 
+Sköter vi på Discord. Tagga mig i handledningskanalen under de timmar som ni normalt sett har lektionstid. Eftersom detta är ert första riktiga kodprojekt där ni tvingas tänka mycket själva så kommer jag vara ganska generös med hjälp, MEN då krävs det att man gjort ett grundligt arbete och försökt själv först.
 
 ## Inlämning
 
